@@ -1,0 +1,17 @@
+id: H000092
+slug: cognitive-reflection-test
+title: Cognitive Reflection Test
+acquisition: behavior
+variant: html
+cognitive_domain: [reasoning, cognitive-reflection, decision-making]
+maturity: smoke_tested
+version: {release_tag: v0.1.0}
+contracts: {taps: v0.2.0}
+runtime: {profile: web}
+language: Chinese
+canonical: false
+evidence:
+  - https://doi.org/10.1257/089533005775196732
+  - https://doi.org/10.3758/s13428-017-0963-x
+  - https://doi.org/10.7554/eLife.56345
+maintainer: [TaskBeacon]

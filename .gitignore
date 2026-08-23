@@ -1,0 +1,6 @@
+outputs/*
+!outputs/.gitkeep
+node_modules/
+dist/
+test-results/
+*.log

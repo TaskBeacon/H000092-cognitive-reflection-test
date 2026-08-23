@@ -1,0 +1,142 @@
+subinfo_fields:
+  - name: subject_id
+    type: int
+    constraints: {min: 101, max: 999, digits: 3}
+
+subinfo_mapping:
+  subject_id: 被试编号（三位数字）
+  Participant Information: 被试信息
+  registration_failed: 登记失败
+  registration_successful: 登记成功
+  invalid_input: "{field} 输入无效"
+
+window:
+  size: [1280, 720]
+  units: pix
+  screen: 0
+  bg_color: white
+  fullscreen: false
+  monitor_width_cm: 35.5
+  monitor_distance_cm: 60
+
+task:
+  task_name: cognitive_reflection_test
+  task_version: 0.1.0
+  save_path: ./outputs/human
+  language: Chinese
+  voice_name: zh-CN-YunyangNeural
+  voice_enabled: false
+  seed_mode: same_within_sub
+  overall_seed: 92092
+  total_blocks: 1
+  total_trials: 3
+  trial_per_block: 3
+  trials_per_block: 3
+  conditions: [classic_crt]
+  condition_weights: null
+  item_ids: [bat_ball, widgets, lily_pads]
+  answer_key:
+    bat_ball: {correct: 0.05, intuitive: 0.10}
+    widgets: {correct: 5, intuitive: 100}
+    lily_pads: {correct: 47, intuitive: 24}
+  continue_key: space
+  submit_key: return
+  key_list: [space, return]
+  cognitive_domain: [reasoning, cognitive_reflection, decision_making]
+  variant: baseline
+  delta: 0.0
+
+timing:
+  response_window_s: 180.0
+
+stimuli:
+  instruction_text:
+    type: text
+    font: SimHei
+    text: |-
+      这是一项包含 3 道题的认知反思测验。
+
+      请独立思考每道题，在输入框中只填写一个数字，然后按回车键提交。
+      请勿使用计算器、搜索工具或纸笔演算；每道题最多 180 秒。
+      作答后不会立即显示正误。
+
+      按空格键开始。
+    color: black
+    height: 30
+    wrapWidth: 1040
+    pos: [0, 0]
+  question_bat_ball:
+    type: text
+    font: SimHei
+    text: |-
+      一支球棒和一个球总共 1.10 美元。
+      球棒比球贵 1.00 美元。这个球多少钱？
+    color: black
+    height: 34
+    wrapWidth: 1040
+    pos: [0, 125]
+  question_widgets:
+    type: text
+    font: SimHei
+    text: |-
+      如果 5 台机器用 5 分钟生产 5 个零件，
+      那么 100 台机器生产 100 个零件需要多少分钟？
+    color: black
+    height: 34
+    wrapWidth: 1040
+    pos: [0, 125]
+  question_lily_pads:
+    type: text
+    font: SimHei
+    text: |-
+      湖里有一片睡莲叶。睡莲叶覆盖的面积每天扩大一倍。
+      如果覆盖整个湖面需要 48 天，那么覆盖半个湖面需要多少天？
+    color: black
+    height: 34
+    wrapWidth: 1040
+    pos: [0, 125]
+  response_entry:
+    type: textbox
+    text: ""
+    font: SimHei
+    letterHeight: 34
+    size: [520, 78]
+    pos: [-70, -80]
+    color: black
+    borderColor: "#6B7280"
+    fillColor: "#F9FAFB"
+    borderWidth: 2
+    alignment: center
+    anchor: center
+    editable: true
+  unit_bat_ball: {type: text, font: SimHei, text: 美元, color: "#374151", height: 30, pos: [270, -80]}
+  unit_widgets: {type: text, font: SimHei, text: 分钟, color: "#374151", height: 30, pos: [270, -80]}
+  unit_lily_pads: {type: text, font: SimHei, text: 天, color: "#374151", height: 30, pos: [270, -80]}
+  submit_hint: {type: text, font: SimHei, text: 只填写数字，按回车键提交, color: "#4B5563", height: 24, wrapWidth: 900, pos: [0, -205]}
+  good_bye_text:
+    type: text
+    font: SimHei
+    text: |-
+      测验完成，感谢参与。
+
+      按空格键退出。
+    color: black
+    height: 32
+    wrapWidth: 1000
+    pos: [0, 0]
+
+triggers:
+  map:
+    exp_onset: 1
+    exp_end: 2
+    block_onset: 3
+    block_end: 4
+    bat_ball_onset: 11
+    widgets_onset: 12
+    lily_pads_onset: 13
+    response_submit: 51
+    response_timeout: 59
+    good_bye_onset: 60
+  driver: {type: serial_url, url: "loop://", baudrate: 115200, timeout: 1, prefix: [1, 225, 1, 0]}
+  policy: {strict: false}
+  timing: {post_delay_s: 0.001}
