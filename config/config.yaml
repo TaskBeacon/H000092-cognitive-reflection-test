@@ -137,6 +137,6 @@ triggers:
     response_submit: 51
     response_timeout: 59
     good_bye_onset: 60
-  driver: {type: serial_url, url: "loop://", baudrate: 115200, timeout: 1, prefix: [1, 225, 1, 0]}
+  driver: {type: mock, print_codes: true}
   policy: {strict: false}
   timing: {post_delay_s: 0.001}
